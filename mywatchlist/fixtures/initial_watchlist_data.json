@@ -1,0 +1,112 @@
+[
+    {
+        "model": "mywatchlist.watchlist",
+        "pk": 1,
+        "fields": {
+            "watched": true,
+            "title": "Rush Hour Trilogy",
+            "rating": 5,
+            "release_date": "1998 - 2007",
+            "review": "He's Mi and I'm Yu"
+        }
+    },
+    {
+        "model": "mywatchlist.watchlist",
+        "pk": 2,
+        "fields": {
+            "watched": true,
+            "title": "Jojo Bizarre Adventure",
+            "rating": 5,
+            "release_date": "1987 - Present",
+            "review": "Yare yare daze"
+        }
+    },
+    {
+        "model": "mywatchlist.watchlist",
+        "pk": 3,
+        "fields": {
+            "watched": true,
+            "title": "Star Wars - The Mandalorian",
+            "rating": 5,
+            "release_date": "2019 - Present",
+            "review": "This is the way"
+        }
+    },
+    {
+        "model": "mywatchlist.watchlist",
+        "pk": 4,
+        "fields": {
+            "watched": true,
+            "title": "Cyberpunk Edgerunners",
+            "rating": 5,
+            "release_date": "September 13th, 2022",
+            "review": "Actually good, unlike the game at its initial launch KEKW"
+        }
+    },
+    {
+        "model": "mywatchlist.watchlist",
+        "pk": 5,
+        "fields": {
+            "watched": true,
+            "title": "Peaky Blinders",
+            "rating": 5,
+            "release_date": "2013 - 2022",
+            "review": "By the order of the title"
+        }
+    },
+    {
+        "model": "mywatchlist.watchlist",
+        "pk": 6,
+        "fields": {
+            "watched": true,
+            "title": "Stranger Things",
+            "rating": 5,
+            "release_date": "2016 - Present",
+            "review": "I promised to keep you sh*theads safe, and that's exactly what I plan on doing"
+        }
+    },
+    {
+        "model": "mywatchlist.watchlist",
+        "pk": 7,
+        "fields": {
+            "watched": true,
+            "title": "Dr Stone",
+            "rating": 5,
+            "release_date": "2019 - Present",
+            "review": "10 Billion Points!"
+        }
+    },
+    {
+        "model": "mywatchlist.watchlist",
+        "pk": 8,
+        "fields": {
+            "watched": true,
+            "title": "Arcane",
+            "rating": 5,
+            "release_date": "November 6th, 2021",
+            "review": "jinxed"
+        }
+    },
+    {
+        "model": "mywatchlist.watchlist",
+        "pk": 9,
+        "fields": {
+            "watched": true,
+            "title": "Free Guy",
+            "rating": 5,
+            "release_date": "October 31st, 2021",
+            "review": "Starring by a video game npc that develops self-awareness by itself, pretty goofy"
+        }
+    },
+    {
+        "model": "mywatchlist.watchlist",
+        "pk": 10,
+        "fields": {
+            "watched": true,
+            "title": "twitch.tv/callmejayz_",
+            "rating": 5,
+            "release_date": "2020 - Present",
+            "review": "Come and stop by! Have some goofs and laughs"
+        }
+    }
+]
