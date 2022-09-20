@@ -1,4 +1,4 @@
-HerokuApp Link : https://tugas-3-pbp-jay.herokuapp.com/mywatchlist/
+HerokuApp Link : https://tugas-2-pbp-jay.herokuapp.com/mywatchlist/
 
 1. Jelaskan perbedaan antara JSON, XML, dan HTML!
   
