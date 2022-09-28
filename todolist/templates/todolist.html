@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+ {% block content %}
+
+  <h1>Assignment 4 PBP/PBD</h1>
+
+  <h5>Name: </h5>
+  <p>{{nama}}</p>
+
+  <h5>Student ID: </h5>
+  <p>{{npm}}</p>
+
+  <h5>Username: </h5>
+  <p>{{user.username}}</p>
+   
+    <table>
+      <tr>
+        <th>User</th>
+        <th>Release Date</th>
+        <th>Chores</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </tr>
+      {% comment %} Add the data below this line {% endcomment %}
+  {% for chores in todolist %}
+  <tr>
+      <th>{{chores.user}}</th>
+      <th>{{chores.creation_date}}</th>
+      <th>{{chores.title}}</th>
+      <th>{{chores.description}}</th>
+      {% if chores.is_finished %}
+        <th>&#10004</th>
+      {% else %}
+        <th>&#10060</th>
+      {% endif %}
+    
+    <form action="{% url 'todolist:markchores' %}" method="POST">
+      {% csrf_token %} 
+      <th><input type="hidden" name="isfinished" value="{{chores.is_finished}}"><input type="hidden" name="id" value="{{chores.id}}"><input type="submit" name="submit" value="Update"/></th>
+    </form>
+
+    <form action="{% url 'todolist:deletechores' %}" method="POST">
+      {% csrf_token %} 
+      <th><input type="hidden" name="id" value="{{chores.id}}"><input type="submit" name="submit" value="Delete"/></th>
+    </form>
+  </tr>
+  {% endfor %}
+    </table>
+
+<button><a href="{% url 'todolist:logout' %}">Logout</a></button>
+<button><a href="{% url 'todolist:addchores' %}">Add New Task / Chore</a></button>
+
+ {% endblock content %}
