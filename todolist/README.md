@@ -1,7 +1,7 @@
 HerokuApp Link : 
-[Main Menu](https://tugas-2-pbp-jay.herokuapp.com/todolist/)
-[Register](https://tugas-2-pbp-jay.herokuapp.com/todolist/register/)
-[Login](https://tugas-2-pbp-jay.herokuapp.com/todolist/login/)
+[Main Menu](https://tugas-2-pbp-jay.herokuapp.com/todolist/) |
+[Register](https://tugas-2-pbp-jay.herokuapp.com/todolist/register/) |
+[Login](https://tugas-2-pbp-jay.herokuapp.com/todolist/login/) |
 [Create New Task](https://tugas-2-pbp-jay.herokuapp.com/todolist/addchores/)
 
 **Kegunaan csrf_token pada elemen form dan apa yang terjadi apabila tidak ada potongan kode tersebut pada tag?**
