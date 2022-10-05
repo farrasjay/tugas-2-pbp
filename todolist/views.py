@@ -23,6 +23,17 @@ def show_todolist(request):
     }
     return render(request, "todolist.html", context)
 
+@login_required(login_url='/todolist/login/')
+def show_todolist_ascards(request):
+    todolist_data = toDoList.objects.filter(user = request.user)
+
+    context = {
+        'todolist': todolist_data,
+        'nama': 'Farras Hafizhudin Indra Wijaya',
+        'npm' : '2106652682'
+    }
+    return render(request, "todolist-ascards.html", context)
+
 def register(request):
     form = UserCreationForm()
 

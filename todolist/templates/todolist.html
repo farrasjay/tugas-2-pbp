@@ -2,18 +2,16 @@
 
  {% block content %}
 
-  <h1>Assignment 4 PBP/PBD</h1>
-
-  <h5>Name: </h5>
-  <p>{{nama}}</p>
-
-  <h5>Student ID: </h5>
-  <p>{{npm}}</p>
+<center>
+  <h1>Assignment 5 PBP/PBD</h1>
 
   <h5>Username: </h5>
   <p>{{user.username}}</p>
-   
-    <table>
+</center>
+
+<div class = "background d-flex flex-column justify-content-between gap-2">
+    
+    <table class="table table-dark table-hover">
       <tr>
         <th>User</th>
         <th>Release Date</th>
@@ -48,8 +46,5 @@
   </tr>
   {% endfor %}
     </table>
-
-<button><a href="{% url 'todolist:logout' %}">Logout</a></button>
-<button><a href="{% url 'todolist:addchores' %}">Add New Task / Chore</a></button>
-
+</div>
  {% endblock content %}

@@ -6,19 +6,21 @@
 
 {% block content %}  
 
-<div class = "addchores">
-    
-    <h1>New Task / Chores Form</h1>  
+<div class = "background d-flex flex-column justify-content-between gap-2">
 
         <form method="POST" >  
-            {% csrf_token %}  
-            <table>  
-                {{ form.as_table }}  
-                <tr>  
-                    <td></td>
-                    <td><input type="submit" name="submit" value="Add Task / Chores"/></td>  
-                </tr>  
-            </table>  
+            {% csrf_token %}
+            <div class="form-content">  
+                <h1>New Task / Chores Form</h1>
+                <table>  
+                    {{ form.as_table }}  
+                    <tr>  
+                        <td></td>
+                        <td><input type="submit" name="submit" value="Add Task / Chores"/></td>  
+                        <td><a href="{% url 'todolist:show_todolist' %}" class="fw-bold text-decoration-none">Back To Home</a></td>
+                    </tr>  
+                </table>  
+            </div>
         </form>
 
     {% if messages %}  
