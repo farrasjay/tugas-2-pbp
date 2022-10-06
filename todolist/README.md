@@ -115,7 +115,7 @@ redirector dan render halaman yang akan ditampilkan berupa HTML beserta data yan
 
 **Perbedaan dari Inline, Internal, dan External CSS serta kelebihan dan kekurangan dari masing-masing style**
 
-# Source : 
+**Source :** 
 [Niagahoster](https://www.niagahoster.co.id/blog/perbedaan-internal-external-dan-inline-css/) | 
 [W3schools](https://www.w3schools.com/css/css_selectors.asp)
 
@@ -160,11 +160,11 @@ redirector dan render halaman yang akan ditampilkan berupa HTML beserta data yan
 - Tidak efisien karena Inline style CSS hanya bisa diterapkan pada satu elemen HTML.
   
 **Mentions few tag HTML5**
-- header representatif header sebuah doc atau section
-- footer representatif footer sebuah doc atau section
-- picture container untuk multiple image sources
-- track text track dari atau dalam bentuk audio dan atau video
-- svg mengallow Scalable Vector Graphics content dalam html doc
+@header representatif header sebuah doc atau section
+@footer representatif footer sebuah doc atau section
+@picture container untuk multiple image sources
+@track text track dari atau dalam bentuk audio dan atau video
+@svg mengallow Scalable Vector Graphics content dalam html doc
 
 **Mentions few CSS selector type**
 - Simple selectors (Based on name, id, class)
