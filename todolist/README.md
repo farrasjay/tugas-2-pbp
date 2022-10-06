@@ -160,11 +160,11 @@ redirector dan render halaman yang akan ditampilkan berupa HTML beserta data yan
 - Tidak efisien karena Inline style CSS hanya bisa diterapkan pada satu elemen HTML.
   
 **Mentions few tag HTML5**
-@header representatif header sebuah doc atau section
-@footer representatif footer sebuah doc atau section
-@picture container untuk multiple image sources
-@track text track dari atau dalam bentuk audio dan atau video
-@svg mengallow Scalable Vector Graphics content dalam html doc
+- (header) representatif header sebuah doc atau section
+- (footer) representatif footer sebuah doc atau section
+- (picture) container untuk multiple image sources
+- (track) text track dari atau dalam bentuk audio dan atau video
+- (svg) mengallow Scalable Vector Graphics content dalam html doc
 
 **Mentions few CSS selector type**
 - Simple selectors (Based on name, id, class)
