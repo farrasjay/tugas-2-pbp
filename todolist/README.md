@@ -230,14 +230,14 @@ redirector dan render halaman yang akan ditampilkan berupa HTML beserta data yan
 [Blogspot](https://muhammadriandiandika.blogspot.com/2017/07/apa-itu-pemogramman-event-driven.html) |
 [Dicoding](https://www.dicoding.com/blog/mengenal-fungsi-asynchronous-request-pada-javascript/)
 
-    Synchronous adalah proses jalannya suatu program secara sequential, disini yang dimaksud sequential yaitu berdasarkan antrian ekseskusi program yang bersangkutan.
+- Synchronous adalah proses jalannya suatu program secara sequential, disini yang dimaksud sequential yaitu berdasarkan antrian ekseskusi program yang bersangkutan.
   
-    Asynchronous on the other hand, adalah proses jalannya suatu program untuk bisa dilakukan secara bersamaan tanpa harus menunggu proses antrian. 
+  Asynchronous on the other hand, adalah proses jalannya suatu program untuk bisa dilakukan secara bersamaan tanpa harus menunggu proses antrian. 
 
-    Pada tugas 6 kali ini, implementasinya menggunakan suatu teknik pemrograman berbasis web yaitu AJAX (Asynchronous Javascript And XML) untuk proses Asynchronousenya.
+  Pada tugas 6 kali ini, implementasinya menggunakan suatu teknik pemrograman berbasis web yaitu AJAX (Asynchronous Javascript And XML) untuk proses Asynchronousenya.
 
 # Event-Driven Programming #
-    Pada dasarnya, konsep Event-Driven Programming sama seperti konsep pemogramman menggunakan Procedure. pemograman yang memiliki input, proses dan output. Namun, ada satu penambahan yang berbeda, yaitu konsep pemilihan untuk mengeksekusi proses programnya. Event-Driven programming juga bisa dibilang suatu paradigma pemrograman yang alur programnya ditentukan oleh suatu event / peristiwa yang merupakan keluaran atau tindakan pengguna atau bisa juga berupa pesan dari program lainnya.
+- Pada dasarnya, konsep Event-Driven Programming sama seperti konsep pemogramman menggunakan Procedure. pemograman yang memiliki input, proses dan output. Namun, ada satu penambahan yang berbeda, yaitu konsep pemilihan untuk mengeksekusi proses programnya. Event-Driven programming juga bisa dibilang suatu paradigma pemrograman yang alur programnya ditentukan oleh suatu event / peristiwa yang merupakan keluaran atau tindakan pengguna atau bisa juga berupa pesan dari program lainnya.
 
 **Contoh Implementasinya :**
 ```js
@@ -262,7 +262,7 @@ $("#todolist-table").on("click", ".todo-update", function(event) {
 
 # Asynchronous AJAX #
 
-    Asynchronous JavaScript and XMLHTTP atau biasa disebut AJAX merupakan salah satu konsep yang menerapkan metode asynchronous dalam menjalankan pekerjaannya. Biasa nya AJAX digunakan untuk melakukan permintaan data (request) dan menangani sebuah tanggapan (handling response), baik response dalam bentuk XML, Javascript ataupun JSON, dan dalam kasus ini, oleh Django's Rest API.
+- Asynchronous JavaScript and XMLHTTP atau biasa disebut AJAX merupakan salah satu konsep yang menerapkan metode asynchronous dalam menjalankan pekerjaannya. Biasa nya AJAX digunakan untuk melakukan permintaan data (request) dan menangani sebuah tanggapan (handling response), baik response dalam bentuk XML, Javascript ataupun JSON, dan dalam kasus ini, oleh Django's Rest API.
 
 **Contoh Implementasinya :**
 ```js
