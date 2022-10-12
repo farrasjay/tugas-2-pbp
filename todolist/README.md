@@ -14,7 +14,7 @@ kode status 403 Forbidden yang berarti akses ke sumber tersebut dilarang karena 
 By default, form.as_table ngerender sebagai table cells yang di wrapped dalam tag html berupa tr
 Apakah bisa membuat elemen form manually? Yes, tiap atribut pada models.py dapat kita beri lable seperti title, type dan name
 
-> for ex:
+> For Ex :
 ```html
 <th><input type="hidden" name="id" value="{{chores.id}}"><input type="submit" name="submit" value="Delete"/></th>
 ```
@@ -220,4 +220,136 @@ redirector dan render halaman yang akan ditampilkan berupa HTML beserta data yan
 - [x]	Add bootstrap-responsive.css dalam base.html
   ```html
   <link rel=”stylesheet” href=”css/bootstrap-responsive.css”>
+  ```
+
+============================================================================================
+
+# Asynchronous & Synchronous #
+**Source :** 
+[Algostudio](https://community.algostudio.net/memahami-synchronous-dan-asynchronous-dalam-pemrograman/) |
+[Blogspot](https://muhammadriandiandika.blogspot.com/2017/07/apa-itu-pemogramman-event-driven.html) |
+[Dicoding](https://www.dicoding.com/blog/mengenal-fungsi-asynchronous-request-pada-javascript/)
+
+    Synchronous adalah proses jalannya suatu program secara sequential, disini yang dimaksud sequential yaitu berdasarkan antrian ekseskusi program yang bersangkutan.
+  
+    Asynchronous on the other hand, adalah proses jalannya suatu program untuk bisa dilakukan secara bersamaan tanpa harus menunggu proses antrian. 
+
+    Pada tugas 6 kali ini, implementasinya menggunakan suatu teknik pemrograman berbasis web yaitu AJAX (Asynchronous Javascript And XML) untuk proses Asynchronousenya.
+
+# Event-Driven Programming #
+    Pada dasarnya, konsep Event-Driven Programming sama seperti konsep pemogramman menggunakan Procedure. pemograman yang memiliki input, proses dan output. Namun, ada satu penambahan yang berbeda, yaitu konsep pemilihan untuk mengeksekusi proses programnya. Event-Driven programming juga bisa dibilang suatu paradigma pemrograman yang alur programnya ditentukan oleh suatu event / peristiwa yang merupakan keluaran atau tindakan pengguna atau bisa juga berupa pesan dari program lainnya.
+
+**Contoh Implementasinya :**
+```js
+$("#todolist-table").on("click", ".todo-update", function(event) {
+      event.preventDefault();
+      const formData = {
+        csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val(),
+        id: $(this).closest("tr").attr("id")
+      };
+
+      $.ajax({
+        type: 'POST',
+        url: '/todolist/markchores/',
+        data: formData,
+        encode: true,
+      }).done(function (data) {
+        window.location.reload();
+      });
+    });
+```
+> Piece of code diatas berfungsi apabila user click tombol update, program akan search by which id task based on tr & th tombol tersebut dan mengupdate nilai dari value is_finished tersebut, true jika checklist, false jika cross.
+
+# Asynchronous AJAX #
+
+    Asynchronous JavaScript and XMLHTTP atau biasa disebut AJAX merupakan salah satu konsep yang menerapkan metode asynchronous dalam menjalankan pekerjaannya. Biasa nya AJAX digunakan untuk melakukan permintaan data (request) dan menangani sebuah tanggapan (handling response), baik response dalam bentuk XML, Javascript ataupun JSON, dan dalam kasus ini, oleh Django's Rest API.
+
+**Contoh Implementasinya :**
+```js
+<script>
+  $(document).ready(function () {
+    $.get('/todolist/ajax', function (data) {
+      console.log(data)
+      data.map((singleData) => {
+        console.log(singleData)
+        var is_finished = '&#10060'
+        if (singleData.fields.is_finished)
+          is_finished = '&#10004'
+        $('#todolist-table').append(
+        `<tr id="${singleData.pk}">
+          <th>${singleData.fields.creation_date}</th>
+          <th>${singleData.fields.title}</th>
+          <th>${singleData.fields.description}</th>
+          <th>${is_finished}</th>
+          
+            <th>
+              <input class="todo-update" type="submit" name="submit" value="Update"/>
+            </th>
+
+            
+            <th>
+              <input type="hidden" name="id" value="${singleData.pk}">
+              <input class="todo-delete" type="submit" name="submit" value="Delete"/>
+            </th>
+          </form>
+        </tr>`
+```
+> By default, disaat user mengakses path /todolist/ setelah login, website hanya akan menampilkan table kosongan at first, dan akan ngeload table-contents nya tersebut via AJAX diatas.
+
+# Checklists Implementation #
+
+- **AJAX GET**
+  1. Membuat method baru pada views untuk mengembalikan data dalam bentuk JSON.
+   
+  2. Add pathing todolist/json/ pada urls.
+   
+  3. Implentasikan AJAX GET
+      ```js
+      $(document).ready(function () {
+      $.get('/todolist/ajax', function (data)
+      ```
+
+- **AJAX POST**
+  1. Implementasi tombol addchores dengan pathingnya tersendiri serta method dalam views yang mengarah ke form tersebut.
+      ```python
+      def add_chores(request):
+      if request.method == "POST":
+          form = ChoresForm(request.POST)
+          if form.is_valid():
+              data = toDoList(
+                  user = request.user,
+                  creation_date = datetime.datetime.now(),
+                  title = form.cleaned_data["name"],
+                  description = form.cleaned_data["description"]
+              )
+              data.save()
+              return redirect('todolist:show_todolist')
+      
+      form = ChoresForm()
+      context = {'form':form}
+      return render(request, 'addchores.html', context)
+      ```
+  2. Implementasi refresh pada halaman utama secara asinkronus untuk menampilkan list terbaru tanpa reload seluruh page.
+      ```js
+      .done(function (data) {
+      window.location.reload();
+      ```
+- **Implementasi Bonus**
+  ```js
+   $("#todolist-table").on("click", ".todo-delete", function(event) {
+      event.preventDefault();
+      const formData = {
+        csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val(),
+        id: $(this).closest("tr").attr("id")
+      };
+
+      $.ajax({
+        type: 'POST',
+        url: '/todolist/deletechores/',
+        data: formData,
+        encode: true,
+      }).done(function (data) {
+        window.location.reload();
+      });
+    });
   ```
