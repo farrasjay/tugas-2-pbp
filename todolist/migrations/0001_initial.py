@@ -17,12 +17,12 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='toDoList',
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False)),
+                ('id', models.AutoField(primary_key=True, serialize=True)),
                 ('creation_date', models.DateField(auto_now=True)),
                 ('title', models.CharField(max_length=250)),
                 ('description', models.CharField(max_length=250)),
                 ('is_finished', models.BooleanField(default=False)),
-                ('user', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
     ]

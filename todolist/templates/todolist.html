@@ -10,10 +10,9 @@
 </center>
 
 <div class = "background d-flex flex-column justify-content-between gap-2">
-    
-    <table class="table table-dark table-hover">
+    {% csrf_token %}
+    <table id="todolist-table" class="table table-dark table-hover">
       <tr>
-        <th>User</th>
         <th>Release Date</th>
         <th>Chores</th>
         <th>Description</th>
@@ -22,29 +21,76 @@
         <th>Delete</th>
       </tr>
       {% comment %} Add the data below this line {% endcomment %}
-  {% for chores in todolist %}
-  <tr>
-      <th>{{chores.user}}</th>
-      <th>{{chores.creation_date}}</th>
-      <th>{{chores.title}}</th>
-      <th>{{chores.description}}</th>
-      {% if chores.is_finished %}
-        <th>&#10004</th>
-      {% else %}
-        <th>&#10060</th>
-      {% endif %}
-    
-    <form action="{% url 'todolist:markchores' %}" method="POST">
-      {% csrf_token %} 
-      <th><input type="hidden" name="isfinished" value="{{chores.is_finished}}"><input type="hidden" name="id" value="{{chores.id}}"><input type="submit" name="submit" value="Update"/></th>
-    </form>
-
-    <form action="{% url 'todolist:deletechores' %}" method="POST">
-      {% csrf_token %} 
-      <th><input type="hidden" name="id" value="{{chores.id}}"><input type="submit" name="submit" value="Delete"/></th>
-    </form>
-  </tr>
-  {% endfor %}
     </table>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $.get('/todolist/ajax', function (data) {
+      console.log(data)
+      data.map((singleData) => {
+        console.log(singleData)
+        var is_finished = '&#10060'
+        if (singleData.fields.is_finished)
+          is_finished = '&#10004'
+        $('#todolist-table').append(
+        `<tr id="${singleData.pk}">
+          <th>${singleData.fields.creation_date}</th>
+          <th>${singleData.fields.title}</th>
+          <th>${singleData.fields.description}</th>
+          <th>${is_finished}</th>
+          
+            <th>
+              <input class="todo-update" type="submit" name="submit" value="Update"/>
+            </th>
+
+            
+            <th>
+              <input type="hidden" name="id" value="${singleData.pk}">
+              <input class="todo-delete" type="submit" name="submit" value="Delete"/>
+            </th>
+          </form>
+        </tr>`
+        )
+      }
+      )
+    }
+    );
+
+    $("#todolist-table").on("click", ".todo-update", function(event) {
+      event.preventDefault();
+      const formData = {
+        csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val(),
+        id: $(this).closest("tr").attr("id")
+      };
+
+      $.ajax({
+        type: 'POST',
+        url: '/todolist/markchores/',
+        data: formData,
+        encode: true,
+      }).done(function (data) {
+        window.location.reload();
+      });
+    });
+  });
+
+  $("#todolist-table").on("click", ".todo-delete", function(event) {
+      event.preventDefault();
+      const formData = {
+        csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val(),
+        id: $(this).closest("tr").attr("id")
+      };
+
+      $.ajax({
+        type: 'POST',
+        url: '/todolist/deletechores/',
+        data: formData,
+        encode: true,
+      }).done(function (data) {
+        window.location.reload();
+      });
+    });
+</script>
  {% endblock content %}

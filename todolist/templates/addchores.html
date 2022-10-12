@@ -8,7 +8,7 @@
 
 <div class = "background d-flex flex-column justify-content-between gap-2">
 
-        <form method="POST" >  
+        <form id="addchores" method="POST" >  
             {% csrf_token %}
             <div class="form-content">  
                 <h1>New Task / Chores Form</h1>
@@ -32,5 +32,31 @@
     {% endif %}
 
 </div>  
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $('#addchores').submit(function (event) {
+      const formData = {
+        csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val(),
+        title: $('#id_name').val(),
+        description: $('#id_description').val(),
+      };
+
+      $.ajax({
+        type: 'POST',
+        url: '/todolist/ajax-post/',
+        data: formData,
+        dataType: 'json',
+        encode: true,
+      }).done(function (data) {
+        $('#message').text(data.message);
+        window.location.replace("/todolist");
+      });
+
+      event.preventDefault();
+    });
+  });
+</script>
 
 {% endblock content %}

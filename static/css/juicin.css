@@ -35,6 +35,13 @@
     padding: 20px 20px 20px 40px;
 }
 
+.ajax-message {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 table, th, td {
     border: 1px solid black;
     border-collapse: collapse;

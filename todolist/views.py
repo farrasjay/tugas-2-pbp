@@ -1,7 +1,7 @@
 from todolist.models import toDoList
 from django.shortcuts import render
 from django.urls import reverse
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.core import serializers
 from django.shortcuts import redirect
 from django.contrib import messages
@@ -9,15 +9,12 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from todolist.forms import ChoresForm, MarkedChoresForm
-import datetime
+import datetime, json
 
 # TODO: Create your views here.
 @login_required(login_url='/todolist/login/')
 def show_todolist(request):
-    todolist_data = toDoList.objects.filter(user = request.user)
-
     context = {
-        'todolist': todolist_data,
         'nama': 'Farras Hafizhudin Indra Wijaya',
         'npm' : '2106652682'
     }
@@ -92,7 +89,7 @@ def mark_chores(request):
         data.is_finished = not data.is_finished
         data.save()
 
-    return redirect('todolist:show_todolist')
+    return HttpResponse()
 
 def delete_chores(request):
     if request.method == "POST":
@@ -101,3 +98,31 @@ def delete_chores(request):
         data.delete()
 
     return redirect('todolist:show_todolist')
+
+def show_json(request):
+    data = serializers.serialize("json", toDoList.objects.all())
+    return HttpResponse(data, content_type="application/json")
+
+@login_required(login_url='/todolist/login/')
+def show_todolist_ajax(request):
+    todolist_data = toDoList.objects.filter(user = request.user)
+    response = serializers.serialize("json", todolist_data)
+    return HttpResponse(response, content_type="application/json")
+
+@login_required(login_url='/todolist/login/')
+def post_todolist_ajax(request):
+    if request.method == 'POST':
+        title = request.POST['title']
+        description = request.POST['description']
+        
+        # print("USERRRR " + request.user.id)
+        instance = toDoList(user = request.user, creation_date = datetime.datetime.now(), title = title, description = description)
+        instance.save()
+        
+        data = {
+            "message": 'Submitted Successfully!'
+        }
+        json_object = json.dumps(data, indent = 4) 
+
+        return JsonResponse(json.loads(json_object))
+    return redirect("todolist:add_chores")
